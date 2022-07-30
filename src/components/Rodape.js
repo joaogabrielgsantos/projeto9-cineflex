@@ -1,13 +1,33 @@
 import styled from "styled-components"
-function Rodape() {
+function Rodape({ title, img, weekday, date}) {
+
+    function infoRodape() {
+
+        if (weekday === undefined) {
+            return (
+                <h2>{title}</h2>
+            )
+        } else {
+            return (
+                <>
+                    <h2>{title}</h2>
+                    <h2>{weekday} - {date}</h2>
+                </>
+            )
+        }
+
+    }
+
+
+
+
     return (
         <Footer>
             <Poster>
-                <img src="https://br.web.img2.acsta.net/pictures/18/11/30/21/49/3142885.jpg" alt="Vidro - 2019" />
+                <img src={img} alt="Vidro - 2019" />
             </Poster>
             <InfosFooter>
-                <h2>Enola Holmes</h2>
-                <h2>Quinta-feira - 15:00</h2>
+                {infoRodape()}
             </InfosFooter>
         </Footer>
     )

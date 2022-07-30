@@ -73,7 +73,7 @@ function SessoesFilme() {
                     {exibirSessoes()}
                 </ListaSessions>
             </TelaComFooter>
-            <Rodape />
+            <Rodape title={sessoes.title} img={sessoes.posterURL}/>
         </>
 
     )
@@ -83,7 +83,7 @@ export default SessoesFilme;
 
 
 
-const TelaComFooter = styled.div`
+export const TelaComFooter = styled.div`
 height: 100%;
 padding: 67px 0px 117px 0px;
 
