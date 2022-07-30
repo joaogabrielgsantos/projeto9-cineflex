@@ -49,8 +49,9 @@ a {
     text-decoration: none;
 }
 
-* {
-    box-sizing: border-box;
+body {
+	font-family: 'Roboto', sans-serif;
+	box-sizing: border-box;
 }
 `;
  

@@ -1,6 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "../globalStyles";
-import PaginaPrincipal from "./PaginaInicial";
+import AssentosSessao from "./AssentosSessao";
+import PaginaFilmes from "./PaginaFilmes";
+import SessoesFilme from "./SessoesFilme";
+import Sucesso from "./Sucesso";
+import Topo from "./Topo";
 
 
 function App() {
@@ -8,9 +12,13 @@ function App() {
         <>
             <GlobalStyle />
             <BrowserRouter>
+            <Topo/>
                 <Routes>
-                    <Route path="/" element={<PaginaPrincipal />} />
-                </Routes>
+                    <Route path="/" element={<PaginaFilmes />} />
+                    <Route path="/sessoes/:idFilme" element={<SessoesFilme />} />
+                    <Route path="/assentos/:idSessao" element={<AssentosSessao />} />
+                    <Route path="/sucesso" element={<Sucesso />} />
+                </Routes>  
             </BrowserRouter>
         </>
 
