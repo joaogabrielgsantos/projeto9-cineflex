@@ -1,15 +1,14 @@
-import {filmes} from "./Listagens"
 import styled from "styled-components"
-/* import { useEffect, useState } from "react"
-import axios from "axios"; */
+import { useEffect, useState } from "react"
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 
 
 
-function Filme({title, posterURL, idFilme}) {
+function Filme({ title, posterURL, idFilme }) {
     return (
-        <Link to = {`/sessoes/${idFilme}`}>
+        <Link to={`/sessoes/${idFilme}`}>
             <ModelFilm>
                 <img src={posterURL} alt={title} />
             </ModelFilm>
@@ -21,25 +20,37 @@ function Filme({title, posterURL, idFilme}) {
 
 function PaginaFilmes() {
 
-    /* const [movies, setMovies] = useState({});
+    const [movies, setMovies] = useState([]);
 
-    useEffect (() => {
+    useEffect(() => {
         const promise = axios.get("https://mock-api.driven.com.br/api/v7/cineflex/movies");
-        
+
         promise.then(response => {
             setMovies(response.data)
             console.log("Deu certo!")
         })
-        promise.catch(error => console.error('Inside error:', error))
 
-    }, []) */
-    
+    }, [])
+
+    function exibirFilmes() {
+        if (movies.length === 0) {
+            return (
+                <h4>Carregando...</h4>
+            )
+        } else {
+            return (
+                movies.map((item, index) =>
+                    <Filme key={index} title={item.title} posterURL={item.posterURL} overview={item.overview} idFilme={item.id} />)
+            )
+        }
+    }
+
 
     return (
         <TelaInicial>
             <PageTitle>Selecione o filme</PageTitle>
             <ListaFilmes>
-            {filmes.map((item, index) => <Filme key={index} title={item.title} posterURL={item.posterURL} overview = {item.overview} idFilme = {item.id}/>)}
+                {exibirFilmes()}
             </ListaFilmes>
         </TelaInicial>
     )
@@ -62,7 +73,7 @@ justify-content: space-around;
 
 `;
 
-const PageTitle = styled.h1`
+export const PageTitle = styled.h1`
 width: 100%;
 height: 100px;
 font-size: 24px;
@@ -73,7 +84,7 @@ justify-content: center;
 align-items: center;
 `;
 
-const ModelFilm = styled.div `
+const ModelFilm = styled.div`
 width: 145px;
 height: 209px;
 margin-top: 10px;

@@ -9,7 +9,6 @@ function Rodape() {
                 <h2>Enola Holmes</h2>
                 <h2>Quinta-feira - 15:00</h2>
             </InfosFooter>
-
         </Footer>
     )
 }
