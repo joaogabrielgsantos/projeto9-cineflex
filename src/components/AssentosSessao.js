@@ -19,20 +19,16 @@ const borderIndisponivel = "#F7C52B";
 
 
 
-
-
-
-function Assentos({ name, isAvailable, selecionado}) {
-    
+function Assentos({ id, name, isAvailable}) {
     const [selecionar, setSelecionar] = useState(false);
-    
+
 
     if (isAvailable === true) {
         return (
-            <AssentosModel color={selecionar ? colorSelecionado : colorDisponivel} border={selecionar ? borderSelecionado : borderDisponivel} onClick={() => setSelecionar(!selecionar && !selecionado)} >
+            <AssentosModel id={id} color={selecionar ? colorSelecionado : colorDisponivel} border={selecionar ? borderSelecionado : borderDisponivel} onClick={() => setSelecionar(!selecionar)} >
                 <h3>{name}</h3>
             </AssentosModel>
-            
+
         )
     } else {
         return (
@@ -45,15 +41,12 @@ function Assentos({ name, isAvailable, selecionado}) {
 }
 
 
-
 function AssentosSessao() {
 
     const { idSessao } = useParams()
     console.log(idSessao)
 
     const [cadeiras, setCadeiras] = useState([]);
-    
-    
 
 
     useEffect(() => {
@@ -73,9 +66,6 @@ function AssentosSessao() {
     const { weekday } = dia
 
     console.log(seats)
-    
-
-
 
     function montarAssentos() {
 
@@ -87,7 +77,7 @@ function AssentosSessao() {
         } else {
             return (
                 seats.map((item) =>
-                    <Assentos key={item.id} name={item.name} isAvailable={item.isAvailable} selecionado = {item.selecionado = false}/>)
+                    <Assentos key={item.id} id={item.id} name={item.name} isAvailable={item.isAvailable} selecionado={item.selecionado = false}/>)
             )
         }
 
