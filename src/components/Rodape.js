@@ -1,9 +1,9 @@
 import styled from "styled-components"
-function Rodape({ title, img, weekday, date}) {
+function Rodape({ title, img, weekday, date, pag}) {
 
     function infoRodape() {
 
-        if (weekday === undefined) {
+        if (pag === "sessoes") {
             return (
                 <h2>{title}</h2>
             )

@@ -63,8 +63,6 @@ function SessoesFilme() {
     }
 
 
-
-
     return (
         <>
             <TelaComFooter>
@@ -73,7 +71,7 @@ function SessoesFilme() {
                     {exibirSessoes()}
                 </ListaSessions>
             </TelaComFooter>
-            <Rodape title={sessoes.title} img={sessoes.posterURL}/>
+            <Rodape pag="sessoes" title={sessoes.title} img={sessoes.posterURL} weekday={null} day={null} />
         </>
 
     )
