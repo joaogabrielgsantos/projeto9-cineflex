@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 
-function Sucesso() {
+function Sucesso({cpfFinal}) {
     return (
         <TelaSucesso>
             <PageTitle sucesso={true}>Pedido feito com sucesso!</PageTitle>
@@ -22,7 +22,7 @@ function Sucesso() {
             <Wrap>
                 <h2>Comprador</h2>
                 <h3>Nome: João da Silva Sauro</h3>
-                <h3>CPF: 123.456.789-10</h3>
+                <h3>CPF: {cpfFinal}</h3>
             </Wrap>
             <Link to = {"/"}>
             <Button>Voltar pra Home</Button>

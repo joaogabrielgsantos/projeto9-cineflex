@@ -53,7 +53,7 @@ function Assentos({ id, name, isAvailable, setCadeirasSelecionadas, cadeirasSele
 }
 
 
-function AssentosSessao() {
+function AssentosSessao({setCpfFinal}) {
 
     const { idSessao } = useParams()
     console.log(idSessao)
@@ -120,7 +120,7 @@ function AssentosSessao() {
                             <h3>Indisponível</h3>
                         </li>
                     </LegendaAseentos>
-                    <ReservarAssento cadeirasSelecionadas={cadeirasSelecionadas} />
+                    <ReservarAssento cadeirasSelecionadas={cadeirasSelecionadas} setCpfFinal={setCpfFinal}/>
 
                 </ListaAssentos>
             </TelaComFooter>

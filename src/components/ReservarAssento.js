@@ -6,11 +6,14 @@ import styled from "styled-components";
 
 
 
-function ReservarAssento({cadeirasSelecionadas}) {
+function ReservarAssento({cadeirasSelecionadas, setCpfFinal}) {
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [comprador, setComprador] = useState("")
     const navigate = useNavigate();
+    setCpfFinal(()=>cpf);
+   
+    
 
     function fazerReserva(event) {
         
@@ -29,6 +32,7 @@ function ReservarAssento({cadeirasSelecionadas}) {
             setComprador(response)
             console.log(response)
             console.log(cadeirasSelecionadas)
+           
 
 
         })

@@ -1,3 +1,4 @@
+import { useContext, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "../globalStyles";
 import AssentosSessao from "./AssentosSessao";
@@ -8,6 +9,10 @@ import Topo from "./Topo";
 
 
 function App() {
+   
+    const [cpfFinal, setCpfFinal] = useState("")
+    
+
     return (
         <>
             <GlobalStyle />
@@ -16,8 +21,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<PaginaFilmes />} />
                     <Route path="/sessoes/:idFilme" element={<SessoesFilme />} />
-                    <Route path="/assentos/:idSessao" element={<AssentosSessao />} />
-                    <Route path="/sucesso" element={<Sucesso />} />
+                    <Route path="/assentos/:idSessao" element={<AssentosSessao setCpfFinal={setCpfFinal}/>} />
+                    <Route path="/sucesso" element={<Sucesso cpfFinal={cpfFinal}/>} />
                 </Routes>  
             </BrowserRouter>
         </>
