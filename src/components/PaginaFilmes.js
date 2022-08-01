@@ -62,6 +62,7 @@ const TelaInicial = styled.div`
 height: 100vh;
 padding-top: 67px;
 
+
 `;
 
 const ListaFilmes = styled.div`
@@ -74,11 +75,11 @@ justify-content: space-around;
 `;
 
 export const PageTitle = styled.h1`
-width: 100%;
-height: 100px;
+width: 374px;
+height: 110px;
 font-size: 24px;
 line-height: 28px;
-color: #293845;
+color: ${props=>props.sucesso? "#247A6B" :"#293845"};
 display: flex;
 justify-content: center;
 align-items: center;

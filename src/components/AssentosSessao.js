@@ -5,6 +5,7 @@ import Rodape from "./Rodape"
 import { TelaComFooter } from "./SessoesFilme"
 import styled from "styled-components"
 import axios from "axios"
+import ReservarAssento from "./ReservarAssento"
 
 
 
@@ -16,14 +17,22 @@ const colorIndisponivel = "#FBE192";
 const borderIndisponivel = "#F7C52B";
 
 
-function Assentos({ name, isAvailable }) {
+
+
+
+
+
+function Assentos({ name, isAvailable, selecionado}) {
+    
     const [selecionar, setSelecionar] = useState(false);
+    
 
     if (isAvailable === true) {
         return (
-            <AssentosModel color={selecionar ? colorSelecionado : colorDisponivel} border={selecionar ? borderSelecionado : borderDisponivel} onClick={() => setSelecionar(!selecionar)} >
+            <AssentosModel color={selecionar ? colorSelecionado : colorDisponivel} border={selecionar ? borderSelecionado : borderDisponivel} onClick={() => setSelecionar(!selecionar && !selecionado)} >
                 <h3>{name}</h3>
             </AssentosModel>
+            
         )
     } else {
         return (
@@ -43,6 +52,9 @@ function AssentosSessao() {
     console.log(idSessao)
 
     const [cadeiras, setCadeiras] = useState([]);
+    
+    
+
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`);
@@ -55,18 +67,19 @@ function AssentosSessao() {
 
     }, []);
     const { day, movie, seats, name } = cadeiras
-    const filmes = {...movie}
-    const {title, posterURL} = filmes
-    const dia = {...day}
-    const {weekday} = dia
+    const filmes = { ...movie }
+    const { title, posterURL } = filmes
+    const dia = { ...day }
+    const { weekday } = dia
 
+    console.log(seats)
     
-
-    console.log(weekday)
 
 
 
     function montarAssentos() {
+
+
         if (cadeiras.length === 0) {
             return (
                 <h4>Carregando...</h4>
@@ -74,7 +87,7 @@ function AssentosSessao() {
         } else {
             return (
                 seats.map((item) =>
-                    <Assentos key={item.id} name={item.name} isAvailable={item.isAvailable} />)
+                    <Assentos key={item.id} name={item.name} isAvailable={item.isAvailable} selecionado = {item.selecionado = false}/>)
             )
         }
 
@@ -103,10 +116,11 @@ function AssentosSessao() {
                             <h3>Indisponível</h3>
                         </li>
                     </LegendaAseentos>
+                    <ReservarAssento />
 
                 </ListaAssentos>
             </TelaComFooter>
-            <Rodape pag="assentos" title={title} img={posterURL} weekday={weekday} date={name}/>
+            <Rodape pag="assentos" title={title} img={posterURL} weekday={weekday} date={name} />
         </>
     )
 }
@@ -139,7 +153,7 @@ background-color: ${props => props.color};
 border: 1px solid ${props => props.border};
 border-radius: 17px;
 margin-bottom: 2px;
-margin-right: 7px;
+margin-right: 9px;
 display: flex;
 align-items: center;
 justify-content: center;
