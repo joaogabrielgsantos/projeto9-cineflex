@@ -24,7 +24,7 @@ function Rodape({ title, img, weekday, date, pag}) {
     return (
         <Footer>
             <Poster>
-                <img src={img} alt="Vidro - 2019" />
+                <img src={img} alt={title} />
             </Poster>
             <InfosFooter>
                 {infoRodape()}

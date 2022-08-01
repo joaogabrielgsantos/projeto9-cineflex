@@ -19,13 +19,25 @@ const borderIndisponivel = "#F7C52B";
 
 
 
-function Assentos({ id, name, isAvailable}) {
+function Assentos({ id, name, isAvailable, setCadeirasSelecionadas, cadeirasSelecionadas }) {
     const [selecionar, setSelecionar] = useState(false);
+    /*  console.log(AssentosModel) */
+    function selecionaCadeira(id) {
+        if (!selecionar) {
+            setCadeirasSelecionadas([...cadeirasSelecionadas, id])
+        } else {
 
+            setCadeirasSelecionadas(cadeirasSelecionadas.filter((index) => index !== id))
+        }
+
+    }
 
     if (isAvailable === true) {
         return (
-            <AssentosModel id={id} color={selecionar ? colorSelecionado : colorDisponivel} border={selecionar ? borderSelecionado : borderDisponivel} onClick={() => setSelecionar(!selecionar)} >
+            <AssentosModel id={id} selecionado={selecionar} color={selecionar ? colorSelecionado : colorDisponivel} border={selecionar ? borderSelecionado : borderDisponivel} onClick={() => {
+                selecionaCadeira(id)
+                setSelecionar(!selecionar)
+            }} >
                 <h3>{name}</h3>
             </AssentosModel>
 
@@ -47,6 +59,7 @@ function AssentosSessao() {
     console.log(idSessao)
 
     const [cadeiras, setCadeiras] = useState([]);
+    const [cadeirasSelecionadas, setCadeirasSelecionadas] = useState([]);
 
 
     useEffect(() => {
@@ -66,6 +79,7 @@ function AssentosSessao() {
     const { weekday } = dia
 
     console.log(seats)
+    console.log(cadeirasSelecionadas)
 
     function montarAssentos() {
 
@@ -77,7 +91,7 @@ function AssentosSessao() {
         } else {
             return (
                 seats.map((item) =>
-                    <Assentos key={item.id} id={item.id} name={item.name} isAvailable={item.isAvailable} selecionado={item.selecionado = false}/>)
+                    <Assentos key={item.id} id={item.id} name={item.name} isAvailable={item.isAvailable} selecionado={item.selecionado = false} cadeirasSelecionadas={cadeirasSelecionadas} setCadeirasSelecionadas={setCadeirasSelecionadas} />)
             )
         }
 
@@ -106,7 +120,7 @@ function AssentosSessao() {
                             <h3>Indisponível</h3>
                         </li>
                     </LegendaAseentos>
-                    <ReservarAssento />
+                    <ReservarAssento cadeirasSelecionadas={cadeirasSelecionadas} />
 
                 </ListaAssentos>
             </TelaComFooter>

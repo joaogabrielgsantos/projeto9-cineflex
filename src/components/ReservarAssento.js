@@ -1,23 +1,26 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 
 
 
-function ReservarAssento() {
+function ReservarAssento({cadeirasSelecionadas}) {
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [comprador, setComprador] = useState("")
+    const navigate = useNavigate();
 
     function fazerReserva(event) {
+        
 
         event.preventDefault(); // impede o redirecionamento
+        navigate('/sucesso');
 
         const promise = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
             {
-                ids: [1455],
+                ids: cadeirasSelecionadas,
                 name: name,
                 cpf: cpf
             });
@@ -25,14 +28,10 @@ function ReservarAssento() {
         promise.then(response => {
             setComprador(response)
             console.log(response)
+            console.log(cadeirasSelecionadas)
 
 
         })
-
-
-
-
-
 
 
 
@@ -42,9 +41,9 @@ function ReservarAssento() {
     return (
         <FormAssento onSubmit={fazerReserva}>
             <label htmlFor="name">Nome do comprador:</label>
-            <input placeholder="Digite seu nome..." type="text" id="name" value={name} onChange={e => setName(e.target.value)} />
+            <input required placeholder="Digite seu nome..." type="text" id="name" value={name} onChange={e => setName(e.target.value)} />
             <label htmlFor="cpf">CPF do comprador:</label>
-            <input placeholder="Digite seu CPF..." type="text" id="cpf" value={cpf} onChange={e => setCpf(e.target.value)} />
+            <input required placeholder="Digite seu CPF..." type="text" id="cpf" value={cpf} onChange={e => setCpf(e.target.value)} />
             <Button type="submit">Reservar assento(s)</Button>
 
         </FormAssento>
